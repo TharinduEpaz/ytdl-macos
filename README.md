@@ -4,11 +4,13 @@ A simple, powerful command-line tool for downloading YouTube videos on macOS.
 
 ## Features
 
+- 🎯 **Interactive mode** - Prompts you to select video quality when downloading
 - 📥 Download videos in multiple qualities (best, 1080p, 720p, 480p)
 - 🎵 Download audio-only as MP3
 - 📋 Download entire playlists
 - 🔍 List available formats before downloading
-- 🎯 Simple and intuitive command-line interface
+- 💾 Downloads automatically save to your Downloads folder
+- ⚡ Simple and intuitive command-line interface
 
 ## Prerequisites
 
@@ -37,12 +39,29 @@ A simple, powerful command-line tool for downloading YouTube videos on macOS.
 
 ## Usage
 
-### Basic Examples
+### Interactive Mode (Recommended)
 
-**Download a video (best quality):**
+Simply provide the URL and you'll be prompted to select the quality:
+
 ```bash
 ytdl "https://www.youtube.com/watch?v=VIDEO_ID"
 ```
+
+You'll see a menu like this:
+```
+📺 Select video quality:
+  1. Best (highest quality available)
+  2. 1080p (Full HD)
+  3. 720p (HD)
+  4. 480p (SD)
+  5. Audio only (MP3)
+
+Enter your choice (1-5):
+```
+
+### Command-Line Mode
+
+You can also specify options directly to skip the interactive prompt:
 
 **Download in specific quality:**
 ```bash
@@ -51,7 +70,7 @@ ytdl "https://www.youtube.com/watch?v=VIDEO_ID" -q 720p
 
 **Download to specific directory:**
 ```bash
-ytdl "https://www.youtube.com/watch?v=VIDEO_ID" -o ~/Downloads
+ytdl "https://www.youtube.com/watch?v=VIDEO_ID" -o ~/Documents
 ```
 
 **Download audio only (MP3):**
@@ -79,8 +98,8 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  -q, --quality         Video quality: best, 1080p, 720p, 480p (default: best)
-  -o, --output-dir      Output directory (default: current directory)
+  -q, --quality         Video quality: best, 1080p, 720p, 480p (default: prompt user)
+  -o, --output-dir      Output directory (default: Downloads folder)
   -a, --audio-only      Download audio only (MP3)
   -p, --playlist        Download entire playlist
   -l, --list-formats    List available formats and exit
@@ -88,7 +107,13 @@ options:
 
 ## Examples
 
-**Download music video as MP3:**
+**Interactive download (easiest):**
+```bash
+ytdl "https://www.youtube.com/watch?v=VIDEO_ID"
+# Then select quality from the menu
+```
+
+**Download music video as MP3 to Music folder:**
 ```bash
 ytdl "https://www.youtube.com/watch?v=VIDEO_ID" -a -o ~/Music
 ```
@@ -101,6 +126,11 @@ ytdl "https://www.youtube.com/playlist?list=PLAYLIST_ID" -q 720p -p
 **Check available formats first:**
 ```bash
 ytdl "https://www.youtube.com/watch?v=VIDEO_ID" -l
+```
+
+**Quick 1080p download to Downloads:**
+```bash
+ytdl "https://www.youtube.com/watch?v=VIDEO_ID" -q 1080p
 ```
 
 ## Troubleshooting
@@ -130,9 +160,11 @@ brew uninstall yt-dlp ffmpeg
 
 ## Notes
 
-- Videos are downloaded to the current directory by default
-- File names are automatically sanitized and based on video titles
-- The tool respects YouTube's terms of service - only download content you have rights to
+- **Default location:** Videos are downloaded to your Downloads folder (`~/Downloads`) by default
+- **Custom location:** Use `-o` flag to specify a different directory
+- **Interactive mode:** When you don't specify `-q`, the tool will prompt you to select quality
+- **File names:** Automatically sanitized and based on video titles
+- **Terms of service:** The tool respects YouTube's terms of service - only download content you have rights to
 
 ## License
 
