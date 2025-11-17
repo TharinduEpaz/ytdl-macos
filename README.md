@@ -166,6 +166,27 @@ brew uninstall yt-dlp ffmpeg
 - **File names:** Automatically sanitized and based on video titles
 - **Terms of service:** The tool respects YouTube's terms of service - only download content you have rights to
 
+## How to run this on Docker
+
+```bash 
+
+docker build -t python-ytdlp .
+
+docker run -it --rm python-ytdlp
+
+docker run --rm -v $(pwd):/app python-ytdlp yt-dlp <video-url>
+
+---
+
+// stop and remove container
+docker rm -f <name>
+
+// remove the image
+docker rmi <name>
+
+
+```
+
 ## License
 
 Free to use and modify for personal use.
